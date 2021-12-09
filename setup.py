@@ -7,7 +7,7 @@ with open('README.rst') as readme:
 VERSION = '2.2.1'
 
 setup(
-    install_requires=['requests'],
+    install_requires=['requests', 'ratelimiter'],
     name='python-telegram-handler',
     version=VERSION,
     packages=['telegram_handler'],
