@@ -1,6 +1,6 @@
 import logging
 from io import BytesIO
-
+from ratelimiter import RateLimiter
 import requests
 
 from telegram_handler.formatters import HtmlFormatter
@@ -50,7 +50,8 @@ class TelegramHandler(logging.Handler):
         except:
             logger.exception('Something went terribly wrong while obtaining chat id')
             logger.debug(response)
-
+            
+    @RateLimiter(max_calls=250, period=1)
     def request(self, method, **kwargs):
         url = self.format_url(self.token, method)
 
